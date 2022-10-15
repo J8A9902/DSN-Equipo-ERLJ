@@ -1,6 +1,6 @@
 services:
 
-  # Users Microservices
+  # Users Microservice
   users-microservice:
     volumes:
       - ./users/:/mnt/
@@ -26,7 +26,7 @@ services:
     volumes:
       - ./users/:/db/
 
-  # Tasks Microservices 
+  # Tasks Microservice
   tasks-microservice:
     volumes:
       - ./tasks/:/mnt/
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./tasks/:/db/
 
-  # Tasks Microservices 
+  # Auth Microservice
   auth-microservice:
     volumes:
       - ./auth/:/mnt/
@@ -62,7 +62,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
     ports:
-      - '5001:5000'
+      - '5002:5000'
     depends_on: 
       - auth-database
 
@@ -77,3 +77,29 @@ services:
       - '5436:5432'
     volumes:
       - ./auth/:/db/
+
+  # Files Microservice
+  files-microservice:
+    volumes:
+      - ./files/:/mnt/
+    build: ./files
+    working_dir: /files_microservice/
+    command: bash -c 'while !</dev/tcp/files-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@files-database/files
+    ports:
+      - '5003:5000'
+    depends_on: 
+      - files-database
+
+  files-database:
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=files
+    ports:
+      - '5438:5432'
+    volumes:
+      - ./files/:/db/
