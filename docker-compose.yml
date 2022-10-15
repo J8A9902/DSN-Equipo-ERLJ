@@ -2,6 +2,7 @@ services:
 
   # Users Microservice
   users-microservice:
+    container_name: users-microservice
     volumes:
       - ./users/:/mnt/
     build: ./users
@@ -15,6 +16,7 @@ services:
       - users-database
 
   users-database:
+    container_name: users-database
     image:
       postgres
     environment:
@@ -28,6 +30,7 @@ services:
 
   # Tasks Microservice
   tasks-microservice:
+    container_name: tasks-microservice
     volumes:
       - ./tasks/:/mnt/
     build: ./tasks
@@ -41,6 +44,7 @@ services:
       - tasks-database
 
   tasks-database:
+    container_name: tasks-database
     image:
       postgres
     environment:
@@ -54,9 +58,10 @@ services:
 
   # Auth Microservice
   auth-microservice:
+    container_name: auth-microservice
     volumes:
       - ./auth/:/mnt/
-    build: ./tasks
+    build: ./auth
     working_dir: /auth_microservice/
     command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
     environment:
@@ -67,6 +72,7 @@ services:
       - auth-database
 
   auth-database:
+    container_name: auth-database
     image:
       postgres
     environment:
@@ -80,6 +86,7 @@ services:
 
   # Files Microservice
   files-microservice:
+    container_name: files-microservice
     volumes:
       - ./files/:/mnt/
     build: ./files
@@ -93,6 +100,7 @@ services:
       - files-database
 
   files-database:
+    container_name: files-microservice
     image:
       postgres
     environment:
