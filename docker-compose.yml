@@ -100,7 +100,7 @@ services:
       - files-database
 
   files-database:
-    container_name: files-microservice
+    container_name: files-database
     image:
       postgres
     environment:
