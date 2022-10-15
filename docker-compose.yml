@@ -1,7 +1,9 @@
 services:
+
+  # Users Microservices
   users-microservice:
     volumes:
-          - ./users/:/mnt/
+      - ./users/:/mnt/
     build: ./users
     working_dir: /users_microservice/
     command: sh -c 'gunicorn -b 0.0.0.0:5000 app:app'
@@ -18,8 +20,34 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=users
+      - POSTGRES_DB=tasks
     ports:
       - '5432:5432'
     volumes:
       - ./users/:/db/
+
+  # Tasks Microservices 
+  tasks-microservice:
+    volumes:
+      - ./tasks/:/mnt/
+    build: ./tasks
+    working_dir: /tasks_microservice/
+    command: sh -c 'gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
+    ports:
+      - '5001:5000'
+    depends_on: 
+      - tasks-database
+
+  tasks-database:
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tasks
+    ports:
+      - '5434:5432'
+    volumes:
+      - ./tasks/:/db/
