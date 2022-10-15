@@ -1,0 +1,25 @@
+services:
+  users-microservice:
+    volumes:
+          - ./users/:/mnt/
+    build: ./users
+    working_dir: /users_microservice/
+    command: sh -c 'gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@users-database/users
+    ports:
+      - '5000:5000'
+    depends_on: 
+      - users-database
+
+  users-database:
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./users/:/db/
