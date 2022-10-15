@@ -6,12 +6,12 @@ services:
       - ./users/:/mnt/
     build: ./users
     working_dir: /users_microservice/
-    command: sh -c 'gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c 'while !</dev/tcp/users-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@users-database/users
     ports:
       - '5000:5000'
-    depends_on: 
+    links: 
       - users-database
 
   users-database:
@@ -20,7 +20,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=tasks
+      - POSTGRES_DB=users
     ports:
       - '5432:5432'
     volumes:
@@ -32,7 +32,7 @@ services:
       - ./tasks/:/mnt/
     build: ./tasks
     working_dir: /tasks_microservice/
-    command: sh -c 'gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c 'while !</dev/tcp/tasks-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
     ports:

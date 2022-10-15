@@ -7,5 +7,5 @@ app: Flask = Flask(__name__)
 
 
 with app.app_context():
-    register_blueprints(app)
     initialize_database(app)
+    register_blueprints(app)
