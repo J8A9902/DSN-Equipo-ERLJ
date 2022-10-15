@@ -51,3 +51,29 @@ services:
       - '5434:5432'
     volumes:
       - ./tasks/:/db/
+
+  # Tasks Microservices 
+  auth-microservice:
+    volumes:
+      - ./auth/:/mnt/
+    build: ./tasks
+    working_dir: /auth_microservice/
+    command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
+    ports:
+      - '5001:5000'
+    depends_on: 
+      - auth-database
+
+  auth-database:
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth
+    ports:
+      - '5436:5432'
+    volumes:
+      - ./auth/:/db/
