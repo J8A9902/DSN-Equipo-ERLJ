@@ -7,4 +7,5 @@ class BaseModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
+    def rollback(self):
+        db.session.rollback()
