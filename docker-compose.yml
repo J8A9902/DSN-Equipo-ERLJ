@@ -1,41 +1,14 @@
 services:
 
-  # Users Microservice
-  users-microservice:
-    container_name: users-microservice
-    volumes:
-      - ./users/:/mnt/
-    build: ./users
-    working_dir: /users_microservice/
-    command: bash -c 'while !</dev/tcp/users-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
-    environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@users-database/users
-    ports:
-      - '5000:5000'
-    links: 
-      - users-database
-
-  users-database:
-    container_name: users-database
-    image:
-      postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=users
-    ports:
-      - '5432:5432'
-    volumes:
-      - ./users/:/db/
-
-  # Auth Microservice
+  
+# Auth Microservice
   auth-microservice:
     container_name: auth-microservice
     volumes:
       - ./auth/:/mnt/
     build: ./auth
     working_dir: /auth_microservice/
-    command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 5; done; gunicorn -b 0.0.0.0:5000 app:app'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
     ports:

@@ -1,7 +1,7 @@
 FROM python:3
 
 RUN groupadd -r user && useradd -r -g user user
-WORKDIR /files_microservice
+WORKDIR /auth_microservice
 ADD requirements.txt ./
 RUN pip install -r requirements.txt
 ADD . .
