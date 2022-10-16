@@ -11,6 +11,7 @@ class Auth(BaseModel):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    def __init__(self, email: str, password: str):
+    def __init__(self, user_id: int, email: str, password: str):
+        self.user_id = user_id
         self.email = email
         self.password = password

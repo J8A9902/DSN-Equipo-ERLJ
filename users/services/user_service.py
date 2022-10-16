@@ -1,5 +1,3 @@
-from hashlib import new
-
 import requests
 
 from models.user import User
@@ -14,18 +12,27 @@ def create(user):
         new_user = User(user['username'])
         new_user.save()
 
-        create_auth(user, new_user.id)
+        response = create_auth(user, new_user.id)
 
-        message = f'User {new_user.username} Created Successfully'
+        if(response['status'] != 200):
+            message = response['message']
+            user = User.get_by_id(new_user.id)
+            user.delete()
+
+            message = f'Error from auth service: { message }'
+        else:
+            message = f'User {new_user.username} Created Successfully'
 
     except Exception as e:
         status = 500
-        message = f'Error: {e}' 
+        message = f'Error: {e}'
+         
 
     return { 'message': message, 'status': status }
 
 def create_auth(user, user_id):
-    request_object = { 'id': user_id, 'email': user['email'], 'password': user['password'] }
-    requests.post(f'{AUTH_SERVICE_URL}/auth/create', json=request_object)
+    request_object = { 'user_id': user_id, 'email': user['email'], 'password': user['password'] }
+    response = requests.post(f'{AUTH_SERVICE_URL}/auth/create', json=request_object)
 
+    return response.json()
     
