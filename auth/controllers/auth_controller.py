@@ -5,7 +5,7 @@ from services.user_service import create
 auth_blueprint = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth_blueprint.route('/login', methods=['POST'])
-def create_user():
+def login():
     data = request.json
     access_token = create_access_token(identity=data['email'])
     
