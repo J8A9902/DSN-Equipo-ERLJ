@@ -19,10 +19,10 @@ def signup():
 @auth.route('/login', methods=['POST'])
 def login():
     data = request.json
-    user = User.find_by_email(data['email'])
+    user = User.find_by_username(data['username'])
     
     if user and check_password_hash(user.password, data['password']):
-        access_token = create_access_token(identity=data['email'])
+        access_token = create_access_token(identity=user.id)
 
         return jsonify(access_token=access_token)
 
