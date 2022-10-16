@@ -1,4 +1,4 @@
 import os
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
-#DATABASE_URL = 'sqlite:///users.db'
+JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')

@@ -1,11 +1,10 @@
 from datetime import timedelta
 from flask import Flask
 
-from controllers.auth_controller import auth_blueprint
-from config.config import DATABASE_URL
+from controllers.auth_controller import auth
+from config import *
 from database import db
 from models import *
-from flask_jwt_extended import JWTManager
 
 def initialize_database(app: Flask) -> None:
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
@@ -14,9 +13,9 @@ def initialize_database(app: Flask) -> None:
     db.create_all()
 
 def register_blueprints(app: Flask) -> None:
-    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(auth)
 
 def setup_jwt(app: Flask) -> None:
-    app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+    app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=5)
     
