@@ -7,11 +7,10 @@ USER_ID_SEQ = Sequence('user_id_seq')
 
 class Auth(BaseModel):
     id = db.Column(db.Integer, USER_ID_SEQ, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    def __init__(self, username: str, email: str, password: str):
-        self.username = username
+    def __init__(self, email: str, password: str):
         self.email = email
         self.password = password
