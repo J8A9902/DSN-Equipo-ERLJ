@@ -1,4 +1,4 @@
-FROM python:3
+FROM python
 
 RUN groupadd -r user && useradd -r -g user user
 WORKDIR /users_microservice

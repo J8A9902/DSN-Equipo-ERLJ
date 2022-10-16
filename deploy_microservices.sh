@@ -1,3 +1,4 @@
-docker rm $(docker ps -aq) -f
-docker rmi -f week1_users-microservice 
+docker rm $(docker ps -a --format "{{.Names}}" | grep microservice)
+docker rm $(docker ps -a --format "{{.Names}}" | grep database)
+docker rmi -f $(docker images | grep microservice)
 docker-compose up

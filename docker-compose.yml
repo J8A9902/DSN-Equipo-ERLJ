@@ -27,3 +27,31 @@ services:
       - '5432:5432'
     volumes:
       - ./users/:/db/
+
+  # Auth Microservice
+  auth-microservice:
+    container_name: auth-microservice
+    volumes:
+      - ./auth/:/mnt/
+    build: ./auth
+    working_dir: /auth_microservice/
+    command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
+    ports:
+      - '5002:5000'
+    depends_on: 
+      - auth-database
+
+  auth-database:
+    container_name: auth-database
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth
+    ports:
+      - '5436:5432'
+    volumes:
+      - ./auth/:/db/
