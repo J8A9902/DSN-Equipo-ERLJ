@@ -1,8 +1,6 @@
-from flask import jsonify
-import requests
 from models import Task
 from helpers.utils import object_as_dict
-from config import FILES_MICROSERVICE
+from tasks import create_file
 
 
 def get_all_tasks():
@@ -60,8 +58,3 @@ def get_task_by_id(id_task: int):
 
 
     return { 'message': message, 'status': status }
-
-
-def create_file(file_name: str):
-    request_object = { 'fileName': file_name }
-    response = requests.post(f'{FILES_MICROSERVICE}/files/create', json=request_object)

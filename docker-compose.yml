@@ -7,7 +7,7 @@ services:
       - ./auth/:/mnt/
     build: ./auth
     working_dir: /auth_microservice/
-    command: bash -c 'while !</dev/tcp/auth-database/5432; do sleep 5; done; gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
       JWT_SECRET_KEY: 7b11677e262b608e88ee6747372a1776
@@ -35,11 +35,11 @@ services:
       - ./tasks/:/mnt/
     build: ./tasks
     working_dir: /tasks_microservice/
-    command: bash -c 'while !</dev/tcp/tasks-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
       FILES_MICROSERVICE: http://files-microservice:5000
-      
+      CELERY_BROKER: redis://redis:6379/0
     depends_on: 
       - tasks-database
 
@@ -63,7 +63,7 @@ services:
       - ./files/:/mnt/
     build: ./files
     working_dir: /files_microservice/
-    command: bash -c 'celery -A tasks.tasks worker -l  info & gunicorn -b 0.0.0.0:5000 app:app'
+    command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@files-database/files
       CELERY_BROKER: redis://redis:6379/0
