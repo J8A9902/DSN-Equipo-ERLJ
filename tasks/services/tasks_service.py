@@ -1,6 +1,6 @@
 from models import Task
 from helpers.utils import object_as_dict
-from tasks import create_file
+from celery_tasks import create_file
 
 
 def get_all_tasks():

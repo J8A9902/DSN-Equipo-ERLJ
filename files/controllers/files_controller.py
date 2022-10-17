@@ -1,6 +1,5 @@
-from turtle import delay
 from flask import Blueprint, request
-from tasks.tasks import upload_file
+from tasks import upload_file
 
 files_blueprint = Blueprint('files', __name__, url_prefix='/files')
 
