@@ -41,3 +41,18 @@ def create_new_task(task):
 
     return { 'message': message, 'status': status }
 
+
+def get_task_by_id(id_task: int):
+    message: str = ''
+    status: int = 200
+
+    try:
+        task = Task.get_by_id(id_task)
+        message = object_as_dict(task)
+        
+    except Exception as e:
+        status = 500
+        message = f'Error: {e}'
+
+
+    return { 'message': message, 'status': status }

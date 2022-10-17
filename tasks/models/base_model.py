@@ -10,3 +10,7 @@ class BaseModel(db.Model):
     @classmethod
     def get_all(cls):
         return cls.query.all()
+
+    @classmethod
+    def get_by_id(cls, id: int):
+        return cls.query.get_or_404(id)
