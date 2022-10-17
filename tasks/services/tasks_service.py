@@ -1,6 +1,8 @@
 from flask import jsonify
+import requests
 from models import Task
 from helpers.utils import object_as_dict
+from config import FILES_MICROSERVICE
 
 
 def get_all_tasks():
@@ -32,6 +34,8 @@ def create_new_task(task):
        new_task = Task(file_name, 1, new_format)
        new_task.save()
 
+       create_file(file_name)
+
        message = f'Task for change the extension of file: {file_name} to {new_format} was created'
        
     except Exception as e:
@@ -56,3 +60,8 @@ def get_task_by_id(id_task: int):
 
 
     return { 'message': message, 'status': status }
+
+
+def create_file(file_name: str):
+    request_object = { 'fileName': file_name }
+    response = requests.post(f'{FILES_MICROSERVICE}/files/create', json=request_object)

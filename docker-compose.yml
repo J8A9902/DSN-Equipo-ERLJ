@@ -38,6 +38,7 @@ services:
     command: bash -c 'while !</dev/tcp/tasks-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
+      FILES_MICROSERVICE: http://files-microservice:5000
       
     depends_on: 
       - tasks-database
@@ -54,6 +55,21 @@ services:
       - '5434:5432'
     volumes:
       - ./tasks/:/db/
+
+  # Files Microservice
+  files-microservice:
+    container_name: files-microservice
+    volumes:
+      - ./files/:/mnt/
+    build: ./files
+    working_dir: /files_microservice/
+    command: bash -c 'celery -A tasks.tasks worker -l  info & gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@files-database/files
+      CELERY_BROKER: redis://redis:6379/0
+    depends_on:
+      - redis
+          
 
   redis:
     image: redis
