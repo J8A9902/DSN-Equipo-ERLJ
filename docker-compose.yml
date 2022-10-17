@@ -11,8 +11,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
       JWT_SECRET_KEY: 7b11677e262b608e88ee6747372a1776
-    ports:
-      - '5000:5000'
+    
     depends_on: 
       - auth-database
 
@@ -28,6 +27,33 @@ services:
       - '5432:5432'
     volumes:
       - ./auth/:/db/
+
+  # Tasks Microservice
+  tasks-microservice:
+    container_name: tasks-microservice
+    volumes:
+      - ./tasks/:/mnt/
+    build: ./tasks
+    working_dir: /tasks_microservice/
+    command: bash -c 'while !</dev/tcp/tasks-database/5432; do sleep 1; done; gunicorn -b 0.0.0.0:5000 app:app'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
+      
+    depends_on: 
+      - tasks-database
+
+  tasks-database:
+    container_name: tasks-database
+    image:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tasks
+    ports:
+      - '5434:5432'
+    volumes:
+      - ./tasks/:/db/
 
   redis:
     image: redis

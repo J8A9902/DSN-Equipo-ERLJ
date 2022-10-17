@@ -7,6 +7,7 @@ from services.user_service import create_user
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 @auth.route('/signup', methods=['POST'])
 def signup():
     data = request.json
@@ -34,6 +35,3 @@ def login():
 def whoami():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
-
-
-

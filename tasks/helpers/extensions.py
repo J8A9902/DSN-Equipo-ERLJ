@@ -1,7 +1,6 @@
 from flask import Flask
 
-from controllers.user_controller import users
-from flask_sqlalchemy import SQLAlchemy
+from controllers.tasks_controller import tasks
 from config.config import DATABASE_URL
 from database import db
 from models import *
@@ -14,5 +13,5 @@ def initialize_database(app: Flask) -> None:
     db.create_all()
 
 def register_blueprints(app: Flask) -> None:
-    app.register_blueprint(users)
+    app.register_blueprint(tasks)
     

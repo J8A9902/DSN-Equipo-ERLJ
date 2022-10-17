@@ -3,10 +3,18 @@ from sqlalchemy import Sequence
 from models.base_model import BaseModel
 from database import db
 
-USER_ID_SEQ = Sequence('user_id_seq')
+USER_ID_SEQ = Sequence('task_id_seq')
 
 class Task(BaseModel):
     id = db.Column(db.Integer, USER_ID_SEQ, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True, nullable=False)
-    email = db.Column(db.String, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    file_name = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    new_format = db.Column(db.String, nullable=False)
+    time_stamp = db.Column(db.DateTime, default=db.func.now())
+    status = db.Column(db.String, default='uploaded')
+
+    def __init__(self, file_name: str, user_id: int, new_format: str):
+        self.file_name = file_name
+        self.user_id = user_id
+        self.new_format = new_format
+        
