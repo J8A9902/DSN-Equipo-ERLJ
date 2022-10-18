@@ -2,7 +2,7 @@ from models import *
 from helpers.utils import object_as_dict
 from celery_tasks import *
 
-def get_all_tasks(user_id: int):
+def get_all_tasks_by_user(user_id: int):
     message: list = []
     status: int = 200
 
@@ -49,6 +49,24 @@ def get_task_by_id(id_task: int):
         task = Task.get_by_id(id_task)
         message = object_as_dict(task)
         
+    except Exception as e:
+        status = 500
+        message = f'Error: {e}'
+
+
+    return { 'message': message, 'status': status }
+
+def get_all_uploaded_tasks():
+    message: list = []
+    status: int = 200
+
+    try:
+       tasks = Task.get_by_uploaded()
+
+       for i in range(len(tasks)):
+            task = object_as_dict(tasks[i])
+            message.append(task)
+
     except Exception as e:
         status = 500
         message = f'Error: {e}'

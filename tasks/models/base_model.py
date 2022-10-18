@@ -1,4 +1,5 @@
 from database import db
+from helpers.tasks_status_enum import TaskStatus
 
 class BaseModel(db.Model):
     __abstract__ = True
@@ -25,3 +26,7 @@ class BaseModel(db.Model):
     @classmethod
     def get_by_user_id(cls, user_id: int):
         return cls.query.filter_by(user_id=user_id).all()
+
+    @classmethod
+    def get_by_uploaded(cls):
+        return cls.query.filter_by(status=TaskStatus.UPLOADED.value).all()

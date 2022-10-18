@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from services.tasks_service import get_all_tasks, create_new_task, get_task_by_id
+from services.tasks_service import get_all_tasks_by_user, create_new_task, get_task_by_id, get_all_uploaded_tasks
 from authentication import login_required
 
 tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
@@ -8,7 +8,7 @@ tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 @tasks.route('', methods=['GET'])
 @login_required
 def get_tasks(user_id: int):
-    response = get_all_tasks(user_id)
+    response = get_all_tasks_by_user(user_id)
 
     return jsonify(response), response['status']
 
@@ -28,4 +28,11 @@ def create_task(user_id):
 def get_task(id_task: int):
     response = get_task_by_id(id_task)   
 
-    return jsonify(response), response['status'] 
+    return jsonify(response), response['status']
+
+
+@tasks.route('/uploads', methods=['GET'])
+def get_all_tasks_uploads():
+    response = get_all_uploaded_tasks()
+
+    return jsonify(response), response['status']
