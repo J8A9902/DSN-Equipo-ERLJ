@@ -11,7 +11,7 @@ class Task(BaseModel):
     user_id = db.Column(db.Integer, nullable=False)
     new_format = db.Column(db.String, nullable=False)
     time_stamp = db.Column(db.DateTime, default=db.func.now())
-    status = db.Column(db.String, default=TaskStatus.IN_PROGRESS)
+    status = db.Column(db.String, default=TaskStatus.IN_PROGRESS.value)
 
     def __init__(self, file_name: str, user_id: int, new_format: str):
         self.file_name = file_name

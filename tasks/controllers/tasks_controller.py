@@ -7,18 +7,19 @@ tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 
 @tasks.route('', methods=['GET'])
 @login_required
-def get_tasks():
-    response = get_all_tasks()
+def get_tasks(user_id: int):
+    response = get_all_tasks(user_id)
 
     return jsonify(response), response['status']
 
 
 @tasks.route('', methods=['POST'])
-def create_task():
+@login_required
+def create_task(user_id):
     uploaded_file = request.files['fileName']
     new_format = request.form['newFormat']
 
-    response = create_new_task(uploaded_file, new_format)
+    response = create_new_task(user_id, uploaded_file, new_format)
 
     return jsonify(response), response['status']
 

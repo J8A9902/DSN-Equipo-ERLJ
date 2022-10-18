@@ -2,12 +2,12 @@ from models import *
 from helpers.utils import object_as_dict
 from celery_tasks import *
 
-def get_all_tasks():
+def get_all_tasks(user_id: int):
     message: list = []
     status: int = 200
 
     try:
-       tasks = Task.get_all()
+       tasks = Task.get_by_user_id(user_id)
 
        for i in range(len(tasks)):
             task = object_as_dict(tasks[i])
@@ -21,12 +21,12 @@ def get_all_tasks():
     return { 'message': message , 'status': status }
 
 
-def create_new_task(upload_file, new_format):
+def create_new_task(user_id, upload_file, new_format):
     message: str = ''
     status: int = 200
 
     try:
-        new_task = Task(upload_file.filename, 1, new_format)
+        new_task = Task(upload_file.filename, user_id, new_format)
         new_task.save()
 
         create_file(upload_file, new_task.id)

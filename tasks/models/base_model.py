@@ -21,3 +21,7 @@ class BaseModel(db.Model):
     @classmethod
     def get_by_id(cls, id: int):
         return cls.query.get_or_404(id)
+
+    @classmethod
+    def get_by_user_id(cls, user_id: int):
+        return cls.query.filter_by(user_id=user_id).all()

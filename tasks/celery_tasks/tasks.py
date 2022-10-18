@@ -18,7 +18,7 @@ def create_file(uploaded_file, task_id):
 
             task = Task.get_by_id(task_id)
 
-            task.status = TaskStatus.UPLOADED
+            task.status = TaskStatus.UPLOADED.value
             task.update()
 
         except Exception as e:
