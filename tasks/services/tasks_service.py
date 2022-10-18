@@ -1,7 +1,7 @@
 from models import Task
 from helpers.utils import object_as_dict
 from celery_tasks import create_file
-
+from helpers.tasks_status_enum import TaskStatus
 
 def get_all_tasks():
     message: list = []
@@ -22,19 +22,17 @@ def get_all_tasks():
     return { 'message': message , 'status': status }
 
 
-def create_new_task(task):
+def create_new_task(upload_file, new_format):
     message: str = ''
     status: int = 200
-    file_name = task['fileName']
-    new_format = task['newFormat']
-    
+
     try:
-       new_task = Task(file_name, 1, new_format)
-       new_task.save()
+        new_task = Task(upload_file.filename, 1, new_format)
+        new_task.save()
 
-       create_file(file_name)
-
-       message = f'Task for change the extension of file: {file_name} to {new_format} was created'
+        create_file(upload_file, new_task.id)
+    
+        message = f'Task for change the extension of file: {upload_file.filename} to {new_format} was created'
        
     except Exception as e:
         status = 500

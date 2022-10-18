@@ -18,16 +18,12 @@ def get_tasks():
 
 @tasks.route('', methods=['POST'])
 def create_task():
-    print(request.files['fileName'].filename, 'rrrrrrrrrrrrrrrrrrrr')
-    print(UPLOAD_FOLDER, 'ÑÑÑÑÑÑ')
     uploaded_file = request.files['fileName']
     new_format = request.form['newFormat']
 
-    if(uploaded_file and uploaded_file.filename):
-        file_name = secure_filename(uploaded_file.filename)
-        uploaded_file.save(os.path.join(UPLOAD_FOLDER, file_name))
+    response = create_new_task(uploaded_file, new_format)
 
-    return jsonify({'data':  'HOLA'}), 200
+    return jsonify(response), response['status']
 
 
 @tasks.route('/<int:id_task>', methods=['GET'])
