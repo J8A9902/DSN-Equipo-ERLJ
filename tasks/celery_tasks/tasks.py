@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 import os
 
 from config import UPLOAD_FOLDER
-from models.task import Task
+from models import Task
 from helpers.tasks_status_enum import TaskStatus
 
 celery_app = Celery(__name__, broker=CELERY_BROKER)
