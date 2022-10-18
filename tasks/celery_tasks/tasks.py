@@ -10,10 +10,16 @@ from helpers.tasks_status_enum import TaskStatus
 celery_app = Celery(__name__, broker=CELERY_BROKER)
 
 @celery_app.task()
-def create_file(uploaded_file, task_id):
+def create_file(uploaded_file, task_id, user_id):
     if(uploaded_file and uploaded_file.filename):
         try:
             file_name = secure_filename(uploaded_file.filename)
+            file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name)
+
+            if(not os.path.exists(file_path)):
+                os.makedirs(file_path)
+
+            
             uploaded_file.save(os.path.join(UPLOAD_FOLDER, file_name))
 
             task = Task.get_by_id(task_id)

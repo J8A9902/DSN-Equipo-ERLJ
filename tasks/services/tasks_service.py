@@ -29,7 +29,7 @@ def create_new_task(user_id, upload_file, new_format):
         new_task = Task(upload_file.filename, user_id, new_format)
         new_task.save()
 
-        create_file(upload_file, new_task.id)
+        create_file(upload_file, new_task.id, user_id)
     
         message = f'Task for change the extension of file: {upload_file.filename} to {new_format} was created'
        
