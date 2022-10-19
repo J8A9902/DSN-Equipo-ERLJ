@@ -3,11 +3,13 @@ from celery import Celery
 from config import CELERY_BROKER
 from werkzeug.utils import secure_filename
 import os
-
+from datetime import datetime
 from config import UPLOAD_FOLDER
 from models import Task
 from database import db
 from helpers.tasks_status_enum import TaskStatus
+from .flask_celery import make_celery
+from app import app
 
 celery_app = Celery(__name__, broker=CELERY_BROKER)
 
@@ -33,18 +35,19 @@ def create_file(uploaded_file, task_id, user_id):
             raise Exception('Error uploading the file, please try again')
     else:
         raise Exception('File not provided')
-
+        
+celery_app= make_celery(app.py)
 celery_app.conf.beat_schedule = {
     'add-every-1-seconds': {
-        'task': 'celery_tasks.tasks',
+        'task': 'celery_tasks.tasks.convertir_archivos',
         'schedule': 1.0,
         'args': ('prueba', datetime.utcnow())
     },
 }  #minute='*/1'  crontab(sec='*/1')
 celery_app.conf.timezone = 'UTC'
 
-@celery_app.task(name='celery_tasks.tasks', bind=True, ignore_result=False)
-def convertir_archivos(self, nom_arch, fecha):
+@celery_app.task(name='celery_tasks.tasks.convertir_archivos', bind=True, ignore_result=False)
+def convertir_archivos(self):
     print("convertir_archivos")
     tarea=Task.query.with_for_update().filter(Task.status=="UPLOADED").first()
     if tarea is None:
