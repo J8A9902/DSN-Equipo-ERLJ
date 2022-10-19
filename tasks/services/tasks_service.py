@@ -1,6 +1,9 @@
+import string
 from models import *
 from helpers.utils import object_as_dict
 from celery_tasks import *
+import os
+from config import UPLOAD_FOLDER
 
 def get_all_tasks_by_user(user_id: int):
     message: list = []
@@ -73,3 +76,26 @@ def get_all_uploaded_tasks():
 
 
     return { 'message': message, 'status': status }
+
+# def put_change_extension(id_task: int, extension: string):
+#     message: str = ''
+#     status: int = 200
+
+#     try:
+#         task = Task.get_by_id(id_task)
+#         message = object_as_dict(task)
+        
+#     except Exception as e:
+#         status = 500
+#         message = f'Error: {e}'
+    
+
+#     try:
+#         nameTask = task.file_name.split('.')[0]
+#         os.rename(UPLOAD_FOLDER+"/"+task.file_name, UPLOAD_FOLDER+"/"+nameTask+"."+extension)
+#     except Exception as e:
+#         status = 500
+#         message = f'Error: {e}'
+
+
+#     return { 'message': message, 'status': status }
