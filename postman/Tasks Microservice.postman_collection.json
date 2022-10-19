@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "0f38360d-317a-4899-84a0-5270bbd615f3",
+		"name": "Tasks Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23891756"
+	},
+	"item": [
+		{
+			"name": "get all tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjEwMDA4NywianRpIjoiNDE0NGIxNzMtOTFmMS00ZTYxLThmYWMtYTBjZjkyYmE1ZDViIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjY2MTAwMDg3LCJleHAiOjE2NjYxMTgwODd9.r0Pc9hCK10aCgw26XtqTDf5DcjI6y0Y5ZI8bLm4b4h0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max\": 5,\n    \"order\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"{{tasks-microservice-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjEzNzU5OSwianRpIjoiMzI5NGVmZDQtNzc4Zi00MjYzLTlkN2QtNDk3NDY3ZGFiNTJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MTM3NTk5LCJleHAiOjE2NjYxNTU1OTl9.OnOxjX_OYyMqqbR0HT5UI8oDyrbcU9NShJfzyQVDI8Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fileName",
+							"contentType": "",
+							"type": "file",
+							"src": "wallpapers/vader.jpg"
+						},
+						{
+							"key": "newFormat",
+							"value": "mp3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"{{tasks-microservice-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"{{tasks-microservice-url}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all uploads tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/uploads",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"{{tasks-microservice-url}}",
+						"uploads"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
