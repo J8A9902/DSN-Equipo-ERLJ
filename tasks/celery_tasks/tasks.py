@@ -13,19 +13,14 @@ def create_file(uploaded_file, task_id, user_id):
         try:
             file_name = secure_filename(uploaded_file.filename)
             file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name)
-
-            if(not os.path.exists(file_path)):
-                os.makedirs(file_path)
-
             
-            uploaded_file.save(os.path.join(UPLOAD_FOLDER, file_name))
-
+            uploaded_file.save(file_path)
             task = Task.get_by_id(task_id)
 
             task.status = TaskStatus.UPLOADED.value
             task.update()
 
         except Exception as e:
-            raise Exception('Error uploading the file, please try again')
+            raise Exception(f'Error uploading the file, please try again: {e}')
     else:
         raise Exception('File not provided')
