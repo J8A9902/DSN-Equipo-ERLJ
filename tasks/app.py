@@ -42,27 +42,24 @@ celery_app.conf.timezone = 'UTC'
 
 @celery_app.task(name='convertir_archivos',bind=True)
 def convertir_archivos(*args):
-    task=Task.query.with_for_update().filter(Task.status=="UPLOADED").first()
-
-    if(task):
-        print_file_message(task.file_name)
-
+    tasks=Task.query.with_for_update().filter(Task.status=="UPLOADED")
+    for task in tasks:
+        if(task):
+            print_file_message(task.file_name)
         try:
             nameTask = task.file_name.split('.')[0]
 
             os.rename(f'{UPLOAD_FOLDER}/{task.user_id}/{task.file_name}', \
                 f'{UPLOAD_FOLDER}/{task.user_id}/{nameTask}.{task.new_format}')
-
-        
+            task.file_name = nameTask+'.'+ task.new_format
             task.status = TaskStatus.PROCESSED.value
             task.update()
             
         except Exception as e:
             task.rollback()
             return f'Error procesando Conversión: {e}', 409
-    else:
-        print('No Files to be processed')
-
+        else:
+            print('Exitoso!!!!!!!')
 
 def print_file_message(file_name):
     print('-----------------------------------------------------------------')
