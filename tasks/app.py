@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from helpers.extensions import register_blueprints, initialize_database
+import shutil
 
 from celery import Celery
 from config import CELERY_BROKER, UPLOAD_FOLDER
@@ -33,25 +34,37 @@ celery_app=make_celery(app)
 celery_app.conf.beat_schedule = {
     'add-every-30-seconds': {
         'task': 'convertir_archivos',
-        'schedule': 15.0,
+        'schedule': 30.0,
         'args': ('prueba')
     },
-}  #minute='*/1'  crontab(sec='*/1')
+}  
 celery_app.conf.timezone = 'UTC'
 
 @celery_app.task(name='convertir_archivos',bind=True)
 def convertir_archivos(*args):
-    print("convertir_archivos")
-    tarea=Task.query.with_for_update().filter(Task.status=="UPLOADED").first()
+    task=Task.query.with_for_update().filter(Task.status=="UPLOADED").first()
 
-    try:
-        nameTask = tarea.file_name.split('.')[0]
-        os.rename(UPLOAD_FOLDER+"/"+str(tarea.user_id)+"/"+tarea.file_name, UPLOAD_FOLDER+"/"+str(tarea.user_id)+"/"+nameTask+"."+tarea.new_format)
-        ##shutil.copy(os.getcwd()+'/archivos/input/'+nombre, os.getcwd()+'/archivos/output/'+nombre)
-        tarea.status="PROCESSED"
-        #db.session.commit()
-    except Exception as e:
-        #db.session.rollback()
-        return f'Error procesando Conversión: {e}', 409
+    if(task):
+        print_file_message(task.file_name)
+
+        try:
+            nameTask = task.file_name.split('.')[0]
+
+            os.rename(f'{UPLOAD_FOLDER}/{task.user_id}/{task.file_name}', \
+                f'{UPLOAD_FOLDER}/{task.user_id}/{nameTask}.{task.new_format}')
+
+        
+            task.status = TaskStatus.PROCESSED.value
+            task.update()
+            
+        except Exception as e:
+            task.rollback()
+            return f'Error procesando Conversión: {e}', 409
+    else:
+        print('No Files to be processed')
 
 
+def print_file_message(file_name):
+    print('-----------------------------------------------------------------')
+    print(f'Processing file: {file_name} ')
+    print('-----------------------------------------------------------------')

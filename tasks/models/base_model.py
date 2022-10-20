@@ -15,6 +15,9 @@ class BaseModel(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def rollback(self):
+        db.session.rollback()
+
     @classmethod
     def get_all(cls):
         return cls.query.all()
