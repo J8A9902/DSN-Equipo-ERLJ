@@ -8,7 +8,7 @@ tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 @tasks.route('', methods=['GET'])
 @login_required
 def get_tasks(user_id: int):
-    data = response.json
+    data = request.json
     response = get_all_tasks_by_user(user_id, data)
 
     return jsonify(response), response['status']
@@ -40,7 +40,6 @@ def delete(user_id: int, id_task: int):
     response = delete_task(user_id, id_task)
 
     return jsonify(response), response['status']
-
 
 
 @tasks.route('/<int:id_task>', methods=['PUT'])

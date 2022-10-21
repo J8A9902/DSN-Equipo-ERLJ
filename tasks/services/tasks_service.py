@@ -10,7 +10,7 @@ def get_all_tasks_by_user(user_id: int, requestData):
     status: int = 200
     max = requestData['max']
     order = requestData['order']
-    
+
     try:
        tasks = Task.get_by_user_id(user_id)
 
@@ -101,7 +101,7 @@ def update_task(user_id: int, task_id: int, new_format: str):
 
         task.update()
 
-        message = f'Task with id: {task_id} deleted seccessfully'
+        message = f'Task with id: {task_id} updated seccessfully'
         
     except Exception as e:
         status = 500
