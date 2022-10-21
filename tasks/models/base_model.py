@@ -33,3 +33,7 @@ class BaseModel(db.Model):
     @classmethod
     def get_by_uploaded(cls):
         return cls.query.filter_by(status=TaskStatus.UPLOADED.value).all()
+
+    @classmethod
+    def limit_get_all(cls, max: int, order: int):
+        return cls.query.limit(max).all()
