@@ -4,6 +4,7 @@ from helpers.utils import object_as_dict
 from celery_tasks import *
 import os
 from config import UPLOAD_FOLDER
+from flask import send_file
 
 def get_all_tasks_by_user(user_id: int, requestData):
     message: list = []
@@ -120,10 +121,10 @@ def get_file_by_name(name_task: string):
     try:
         task = Task.query.filter(Task.file_name==name_task).first()
         if(task):
-            file_path = os.path.join(f'{UPLOAD_FOLDER}/{task.user_id}')
+            file_path = os.path.join(f'uploads/{task.user_id}', task.file_name)
             print(file_path)
             print(name_task)
-            return send_from_directory(file_path, name_task)
+            return send_file(file_path, as_attachment=True)
         else:
             return { 'message': "No existe el registro", 'status': status }
     except Exception as e:
