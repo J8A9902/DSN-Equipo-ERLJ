@@ -12,7 +12,10 @@ def get_all_tasks_by_user(user_id: int, requestData):
     order = requestData['order']
 
     try:
-       tasks = Task.get_by_user_id(user_id)
+       if(order != 1 and order != 0):
+            raise Exception('Order not valid')
+
+       tasks = Task.limit_get_all(user_id, max, order)
 
        for i in range(len(tasks)):
             task = object_as_dict(tasks[i])
