@@ -51,3 +51,10 @@ def update(user_id: int, id_task: int):
     response = update_task(user_id, id_task, new_format)
 
     return jsonify(response), response['status']
+
+
+@tasks.route('/getFile/<string:name_task>', methods=['GET'])
+def get_file(name_task: str):
+    response = get_file_by_name(name_task)  
+    print("Retorno el archivo")
+    return response

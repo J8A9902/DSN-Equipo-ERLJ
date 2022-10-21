@@ -112,3 +112,21 @@ def update_task(user_id: int, task_id: int, new_format: str):
 
 
     return { 'message': message, 'status': status }
+
+def get_file_by_name(name_task: string):
+    message: str = ''
+    status: int = 200
+    print("------------------------------------jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
+    try:
+        task = Task.query.filter(Task.file_name==name_task).first()
+        if(task):
+            file_path = os.path.join(f'{UPLOAD_FOLDER}/{task.user_id}')
+            print(file_path)
+            print(name_task)
+            return send_from_directory(file_path, name_task)
+        else:
+            return { 'message': "No existe el registro", 'status': status }
+    except Exception as e:
+        status = 500
+        message = f'Error: {e}'
+        return { 'message': message, 'status': status }
