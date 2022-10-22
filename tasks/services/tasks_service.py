@@ -35,13 +35,15 @@ def create_new_task(user_id, upload_file, new_format):
     status: int = 200
 
     try:
-        new_task = Task(upload_file.filename, user_id, new_format)
-        new_task.save()
+        if new_format == 'mp3' or new_format == 'wap' or new_format == 'ogg':
+            new_task = Task(upload_file.filename, user_id, new_format)
+            new_task.save()
 
-        create_file(upload_file, new_task.id, user_id)
+            create_file(upload_file, new_task.id, user_id)
     
-        message = f'Task for change the extension of file: {upload_file.filename} to {new_format} was created'
-       
+            message = f'Task for change the extension of file: {upload_file.filename} to {new_format} was created'
+        else:
+            message = f'Solo se permiten las siguientes extensiones: mp3-wap-ogg'  
     except Exception as e:
         status = 500
         message = f'Error: {e}'
