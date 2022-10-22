@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, send_from_directory
 
 from services.tasks_service import *
 from authentication import login_required
@@ -55,6 +55,15 @@ def update(user_id: int, id_task: int):
 
 @tasks.route('/getFile/<string:name_task>', methods=['GET'])
 def get_file(name_task: str):
-    response = get_file_by_name(name_task)  
-    print("Retorno el archivo")
-    return response
+    try:
+        task = Task.query.filter(Task.file_name==name_task).first()
+        if(task):
+            file_path = '/tasks_microservice/uploads/' + str(task.user_id)
+            print(file_path)
+            return send_from_directory(file_path, name_task, as_attachment=True)
+        else:
+            return { 'message': "No existe el registro", 'status': status }
+    except Exception as e:
+        status = 500
+        message = f'Error: {e}'
+        return { 'message': message, 'status': status }  

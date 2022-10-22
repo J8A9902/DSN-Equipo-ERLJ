@@ -121,10 +121,11 @@ def get_file_by_name(name_task: string):
     try:
         task = Task.query.filter(Task.file_name==name_task).first()
         if(task):
-            file_path = os.path.join(f'uploads/{task.user_id}', task.file_name)
+            file_path = r'/tasks_microservice/uploads/' + str(task.user_id) +'/'+ task.file_name
             print(file_path)
-            print(name_task)
             return send_file(file_path, as_attachment=True)
+
+            return { 'message': "No encontro el archivo", 'status': status }     
         else:
             return { 'message': "No existe el registro", 'status': status }
     except Exception as e:
