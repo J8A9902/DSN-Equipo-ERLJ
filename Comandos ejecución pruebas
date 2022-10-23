@@ -1,0 +1,13 @@
+##Experimento 1
+
+ab -v 4 -n 1000 -c 100 -rk -g output.csv -H 'Authorization: Bearer {TOKEN}...' -p post_data.txt -T "multipart/form-data; boundary=1234567890" http://127.0.0.1:3000/api/tasks
+
+
+## Experimento 2
+
+ab -v 4  -c 100 -n 1000 -rk -g output_login.csv -p post_data.json -T application/json http://127.0.0.1:3000/api/auth/login
+
+
+## Generar gráfico
+
+gnuplot plot.p
