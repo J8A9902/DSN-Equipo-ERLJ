@@ -4,7 +4,8 @@
 
 ## Pasos para ejecutar el sistema
 - git clone https://github.com/J8A9902/DSN-Equipo-ERLJ.git
-- cd 
+- cd DSN-Equipo-ERLJ
+- docker-compose up --build
 
 ### Requisitos
 - Instalar docker y docker compose
