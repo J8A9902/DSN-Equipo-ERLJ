@@ -2,6 +2,11 @@
 # Sistema Conversión Cloud - Entorno Tradicional
 
 
+## Requisitos
+- Instalar docker y docker compose
+- Instalar Postman
+
+
 ## Pasos para ejecutar el sistema
 - git clone https://github.com/J8A9902/DSN-Equipo-ERLJ.git
 - cd DSN-Equipo-ERLJ
@@ -30,9 +35,3 @@
 - CLick en import
 - Ir Environments y activar Nginx Environment
 - En Environments, cambiar los environmets de nginx (Nginx Environment) si así se desea(por defecto funcionan)< 
-
-
-
-### Requisitos
-- Instalar docker y docker compose
-- Instalar Postman
