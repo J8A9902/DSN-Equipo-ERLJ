@@ -5,7 +5,7 @@
 ## Pasos para ejecutar el sistema
 - git clone https://github.com/J8A9902/DSN-Equipo-ERLJ.git
 - cd DSN-Equipo-ERLJ
-- docker-compose up --build
+- docker-compose up --build o docker-compose up --build -d (para segundo planno) 
 
 ## Pasos para obtener las colecciones de postman
 - Abrir Postman
