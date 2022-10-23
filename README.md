@@ -18,6 +18,7 @@
 ![image](https://user-images.githubusercontent.com/98363516/197397653-e6adf3b2-ea6f-4821-af34-d1fd2e725063.png)
 
 - CLick en import
+- Ir Environments y activar Nginx Environment
 - En Environments, cambiar los environmets de nginx (Nginx Environment) si así se desea(por defecto funcionan)< 
 
 
