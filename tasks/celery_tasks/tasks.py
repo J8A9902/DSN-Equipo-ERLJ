@@ -19,10 +19,7 @@ def create_file(uploaded_file, task_id, user_id):
             if(not os.path.exists(file_path)):
                 os.makedirs(file_path)
             
-            if(not os.path.exists(f'{UPLOAD_FOLDER}/{user_id}/{file_name}')):
-                uploaded_file.save(os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name))
-            else:
-                raise Exception('Ya existe el archivo') 
+            uploaded_file.save(os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name))
 
             task.status = TaskStatus.UPLOADED.value
             task.update()
