@@ -6,6 +6,16 @@
 - git clone https://github.com/J8A9902/DSN-Equipo-ERLJ.git
 - cd DSN-Equipo-ERLJ
 - docker-compose up --build o docker-compose up --build -d (para segundo planno) 
+- docker ps, esto para validar los contenedores en ejecución, los cuales deben ser:
+  - auth-microservice
+  - auth-database
+  - tasks-microservice
+  - tasks-database
+  - redis
+  - nginx
+  
+![image](https://user-images.githubusercontent.com/98363516/197398728-af1a24bc-a930-4762-97c4-e2756eb06d29.png)
+
 
 ## Pasos para obtener las colecciones de postman
 - Abrir Postman
