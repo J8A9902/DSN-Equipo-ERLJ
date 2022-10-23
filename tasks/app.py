@@ -32,6 +32,14 @@ initialize_database(app)
 
 celery_app=make_celery(app)
 
+celery_app.conf.beat_schedule = {
+    'add-every-30-seconds': {
+        'task': 'convertir_archivos',
+        'schedule': 30.0,
+        'args': ('prueba')
+    },
+}  
+
 celery_app.conf.timezone = 'UTC'
 
 @celery_app.task(name='convertir_archivos',bind=True)
