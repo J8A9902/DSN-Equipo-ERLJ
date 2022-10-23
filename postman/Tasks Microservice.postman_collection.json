@@ -16,13 +16,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjEwMDA4NywianRpIjoiNDE0NGIxNzMtOTFmMS00ZTYxLThmYWMtYTBjZjkyYmE1ZDViIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjY2MTAwMDg3LCJleHAiOjE2NjYxMTgwODd9.r0Pc9hCK10aCgw26XtqTDf5DcjI6y0Y5ZI8bLm4b4h0",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjMxNTAyMywianRpIjoiYTU3MGViYWEtMmZjZi00MTc2LWIxZDItMmUxNDFmNDQ2ZTE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MzE1MDIzLCJleHAiOjE2NjYzMzMwMjN9.EJfPgpIf5Ie5D5C4IqjW1DhghmHVS7mEQniMa4VzEKQ",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"max\": 5,\n    \"order\": 1\n}",
+					"raw": "{\n    \"max\": 2,\n    \"order\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,7 +50,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjEzNzU5OSwianRpIjoiMzI5NGVmZDQtNzc4Zi00MjYzLTlkN2QtNDk3NDY3ZGFiNTJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MTM3NTk5LCJleHAiOjE2NjYxNTU1OTl9.OnOxjX_OYyMqqbR0HT5UI8oDyrbcU9NShJfzyQVDI8Y",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjQ1MjI1NSwianRpIjoiMDI3N2NkNTAtODI0Mi00YzI4LWEzZmYtMzYzODhlMDlhNjRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2NDUyMjU1LCJleHAiOjE2NjY0NzAyNTV9.bzNp9LDNPtJjrOlBscUkr8YQj0Nl0x30DMzn1nWiAVA",
 						"type": "text"
 					}
 				],
@@ -61,7 +61,7 @@
 							"key": "fileName",
 							"contentType": "",
 							"type": "file",
-							"src": "wallpapers/vader.jpg"
+							"src": "wallpapers/wave/4wave_01.png"
 						},
 						{
 							"key": "newFormat",
@@ -88,9 +88,15 @@
 			"name": "Get task",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjMxNTAyMywianRpIjoiYTU3MGViYWEtMmZjZi00MTc2LWIxZDItMmUxNDFmNDQ2ZTE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MzE1MDIzLCJleHAiOjE2NjYzMzMwMjN9.EJfPgpIf5Ie5D5C4IqjW1DhghmHVS7mEQniMa4VzEKQ",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/1",
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/33",
 					"host": [
 						"{{host}}"
 					],
@@ -98,19 +104,34 @@
 					"path": [
 						"{{prefix}}",
 						"{{tasks-microservice-url}}",
-						"1"
+						"33"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get all uploads tasks",
+			"name": "Update Task",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjMxNTAyMywianRpIjoiYTU3MGViYWEtMmZjZi00MTc2LWIxZDItMmUxNDFmNDQ2ZTE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MzE1MDIzLCJleHAiOjE2NjYzMzMwMjN9.EJfPgpIf5Ie5D5C4IqjW1DhghmHVS7mEQniMa4VzEKQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"newFormat\": \"mp5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/uploads",
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/34",
 					"host": [
 						"{{host}}"
 					],
@@ -118,7 +139,34 @@
 					"path": [
 						"{{prefix}}",
 						"{{tasks-microservice-url}}",
-						"uploads"
+						"34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get file",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjQ1MjI1NSwianRpIjoiMDI3N2NkNTAtODI0Mi00YzI4LWEzZmYtMzYzODhlMDlhNjRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2NDUyMjU1LCJleHAiOjE2NjY0NzAyNTV9.bzNp9LDNPtJjrOlBscUkr8YQj0Nl0x30DMzn1nWiAVA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/getFile/audio5.mp3",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"{{tasks-microservice-url}}",
+						"getFile",
+						"audio5.mp3"
 					]
 				}
 			},
