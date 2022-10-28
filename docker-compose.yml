@@ -55,7 +55,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /tasks_microservice/uploads
+      UPLOAD_FOLDER: /ubuntu/uploads
       PYTHONUNBUFFERED: 1
     deploy:
       resources:
@@ -78,7 +78,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /tasks_microservice/uploads
+      UPLOAD_FOLDER: /ubuntu/uploads
       PYTHONUNBUFFERED: 1
       CELERY_BROKER: redis://redis:6379/0
     deploy:
@@ -116,14 +116,8 @@ services:
 
   ubuntu:
     image: ubuntu
-  deploy:
-    resources:
-      limits:
-        cpus: '0.1'
-        memory: 1000M
-      reservations:
-        cpus: '0.1'
-        memory: 1000M
+    working_dir: /ubuntu
+    tty: true
 
   redis:
     image: redis
