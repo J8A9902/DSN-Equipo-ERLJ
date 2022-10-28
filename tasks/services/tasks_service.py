@@ -1,10 +1,12 @@
 import string
 from models import *
 from helpers.utils import object_as_dict
-from celery_tasks import *
 import os
 from config import UPLOAD_FOLDER
 from flask import send_file
+from werkzeug.utils import secure_filename
+
+from helpers.tasks_status_enum import TaskStatus
 
 def get_all_tasks_by_user(user_id: int, requestData):
     message: list = []
@@ -116,21 +118,26 @@ def update_task(user_id: int, task_id: int, new_format: str):
 
     return { 'message': message, 'status': status }
 
-def get_file_by_name(name_task: string):
-    message: str = ''
-    status: int = 200
-    print("------------------------------------jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
-    try:
-        task = Task.query.filter(Task.file_name==name_task).first()
-        if(task):
-            file_path = r'/tasks_microservice/uploads/' + str(task.user_id) +'/'+ task.file_name
-            print(file_path)
-            return send_file(file_path, as_attachment=True)
 
-            return { 'message': "No encontro el archivo", 'status': status }     
-        else:
-            return { 'message': "No existe el registro", 'status': status }
-    except Exception as e:
-        status = 500
-        message = f'Error: {e}'
-        return { 'message': message, 'status': status }
+
+def create_file(uploaded_file, task_id, user_id):
+    task = Task.get_by_id(task_id)
+
+    if(uploaded_file and uploaded_file.filename):
+        try:
+            file_name = secure_filename(uploaded_file.filename)
+            file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}')
+            
+            if(not os.path.exists(file_path)):
+                os.makedirs(file_path)
+            
+            uploaded_file.save(os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name))
+
+            task.status = TaskStatus.UPLOADED.value
+            task.update()
+
+        except Exception as e:
+            task.delete()
+            raise Exception(f'Error uploading the file, please try again: {e}')
+    else:
+        raise Exception('File not provided')

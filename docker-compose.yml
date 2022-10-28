@@ -1,3 +1,4 @@
+version: '3'
 services:
 
   # Auth Microservice
@@ -54,7 +55,6 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      CELERY_BROKER: redis://redis:6379/0
       UPLOAD_FOLDER: /tasks_microservice/uploads
       PYTHONUNBUFFERED: 1
     deploy:
