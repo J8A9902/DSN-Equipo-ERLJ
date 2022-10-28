@@ -68,6 +68,31 @@ services:
     depends_on: 
       - tasks-database
 
+  scheduler:
+    container_name: scheduler
+    volumes:
+      - ./scheduler/:/mnt/
+    build: ./scheduler
+    working_dir: /scheduler/
+    command: bash -c './run_service.sh'
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
+      AUTH_SERVICE: http://auth-microservice:5000
+      UPLOAD_FOLDER: /tasks_microservice/uploads
+      PYTHONUNBUFFERED: 1
+      CELERY_BROKER: redis://redis:6379/0
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 1000M
+        reservations:
+          cpus: '0.1'
+          memory: 1000M
+    depends_on: 
+      - tasks-database
+      - redis
+
   tasks-database:
     container_name: tasks-database
     image:
@@ -89,6 +114,16 @@ services:
           cpus: '0.1'
           memory: 1000M
 
+  ubuntu:
+    image: ubuntu
+  deploy:
+    resources:
+      limits:
+        cpus: '0.1'
+        memory: 1000M
+      reservations:
+        cpus: '0.1'
+        memory: 1000M
 
   redis:
     image: redis
