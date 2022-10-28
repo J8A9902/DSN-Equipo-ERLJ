@@ -1,7 +1,5 @@
 version: '3'
 services:
-
-  # Auth Microservice
   auth-microservice:
     container_name: auth-microservice
     volumes:
@@ -12,39 +10,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@auth-database/auth
       JWT_SECRET_KEY: 7b11677e262b608e88ee6747372a1776
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
-    depends_on: 
-      - auth-database
 
-  auth-database:
-    container_name: auth-database
-    image:
-      postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=auth
-    ports:
-      - '5432:5432'
-    volumes:
-      - ./auth/:/db/
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
 
-  # Tasks Microservice
   tasks-microservice:
     container_name: tasks-microservice
     volumes:
@@ -55,80 +22,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /ubuntu/uploads
+      UPLOAD_FOLDER: /ubuntu
       PYTHONUNBUFFERED: 1
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
-    depends_on: 
-      - tasks-database
-
-  scheduler:
-    container_name: scheduler
-    volumes:
-      - ./scheduler/:/mnt/
-    build: ./scheduler
-    working_dir: /scheduler/
-    command: bash -c './run_service.sh'
-    environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@tasks-database/tasks
-      AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /ubuntu/uploads
-      PYTHONUNBUFFERED: 1
-      CELERY_BROKER: redis://redis:6379/0
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
-    depends_on: 
-      - tasks-database
-      - redis
-
-  tasks-database:
-    container_name: tasks-database
-    image:
-      postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=tasks
-    ports:
-      - '5434:5432'
-    volumes:
-      - ./tasks/:/db/
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
-
-  ubuntu:
-    image: ubuntu
-    working_dir: /ubuntu
-    tty: true
-
-  redis:
-    image: redis
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
 
   nginx:
     ports:
@@ -139,11 +34,3 @@ services:
     depends_on:
         - auth-microservice
         - tasks-microservice
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1000M
-        reservations:
-          cpus: '0.1'
-          memory: 1000M
