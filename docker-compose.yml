@@ -3,17 +3,19 @@ services:
   scheduler:
     container_name: scheduler
     volumes:
-      - ./scheduler/:/mnt/
+      - uploads:/scheduler/uploads
     build: ./scheduler
     working_dir: /scheduler/
     command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /nfs/home
+      UPLOAD_FOLDER: /scheduler/uploads
       PYTHONUNBUFFERED: 1
       CELERY_BROKER: redis://redis:6379/0
    
   redis:
     image: redis
 
+volumes:
+  uploads:
