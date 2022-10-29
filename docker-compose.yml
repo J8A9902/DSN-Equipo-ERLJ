@@ -21,8 +21,8 @@ services:
     command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
-      AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /ubuntu
+      AUTH_SERVICE: http://34.66.107.221:5000
+      UPLOAD_FOLDER: /nfs/home
       PYTHONUNBUFFERED: 1
 
   nginx:
