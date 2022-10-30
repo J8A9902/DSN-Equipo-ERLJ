@@ -59,6 +59,7 @@ def get_file(name_task: str):
         task = Task.query.filter(Task.file_name==name_task).first()
         if(task):
             file_path = f'{UPLOAD_FOLDER}/{str(task.user_id)}'
+            print(file_path)
             return send_from_directory(file_path, name_task, as_attachment=True)
         else:
             return { 'message': "No existe el registro", 'status': status }
