@@ -15,14 +15,14 @@ services:
   tasks-microservice:
     container_name: tasks-microservice
     volumes:
-      - ./tasks/:/mnt/
+      - uploads:/tasks_microservice/nfs/
     build: ./tasks
     working_dir: /tasks_microservice/
     command: bash -c './run_service.sh'
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: '/nfs/home'
+      UPLOAD_FOLDER: /tasks_microservice/nfs
       PYTHONUNBUFFERED: 1
 
   nginx:
@@ -34,3 +34,5 @@ services:
     depends_on:
         - auth-microservice
         - tasks-microservice
+volumes:
+  uploads:
