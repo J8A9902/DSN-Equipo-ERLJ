@@ -1,0 +1,38 @@
+Server Software:        nginx/1.23.2
+Server Hostname:        34.27.241.129
+Server Port:            3000
+
+Document Path:          /api/tasks/getFile/audio1.ogg
+Document Length:        6467791 bytes
+
+Concurrency Level:      300
+Time taken for tests:   332.085 seconds
+Complete requests:      1000
+Failed requests:        87
+   (Connect: 0, Receive: 0, Length: 87, Exceptions: 0)
+Non-2xx responses:      55
+Keep-Alive requests:    968
+Total transferred:      6060288085 bytes
+HTML transferred:       6059975529 bytes
+Requests per second:    3.01 [#/sec] (mean)
+Time per request:       99625.495 [ms] (mean)
+Time per request:       332.085 [ms] (mean, across all concurrent requests)
+Transfer rate:          17821.49 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  450 808.2      0    3188
+Processing:  1193 87701 26550.8  87457  165500
+Waiting:      180 37842 15973.5  34219   76874
+Total:       1288 88150 26645.3  87498  167357
+
+Percentage of the requests served within a certain time (ms)
+  50%  87498
+  66%  96277
+  75%  102831
+  80%  106546
+  90%  117934
+  95%  133724
+  98%  146896
+  99%  152365
+ 100%  167357 (longest request)
