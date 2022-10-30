@@ -1,0 +1,3 @@
+
+ab -v 4 -n 1000 -c 100 -rk -g output.csv -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NzE2MzE3MywianRpIjoiYjMzZTBlODQtMjYxZi00NmFkLWI0YWEtOTg2ZGU2MmQzMzEzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY3MTYzMTczLCJleHAiOjE2NjcxODExNzN9.Pl457xfNRTCkfWV4tPmLy5QxXNsXfOE8Ld5ktsmS7wU
+' -p post_data.txt -T "multipart/form-data; boundary=1234567890" http://34.27.241.129:3000/api/tasks
