@@ -6,6 +6,9 @@ from config import UPLOAD_FOLDER
 from flask import send_file
 from werkzeug.utils import secure_filename
 
+from google.cloud.storage import Blob
+from google.cloud import storage
+
 from helpers.tasks_status_enum import TaskStatus
 
 def get_all_tasks_by_user(user_id: int, requestData):
@@ -121,17 +124,28 @@ def update_task(user_id: int, task_id: int, new_format: str):
 
 
 def create_file(uploaded_file, task_id, user_id):
+
+    client = client = storage.Client.from_service_account_json("dsn-erlj-8549770df6f7.json")
+    bucket = client.get_bucket('cloud-conversion-storage')
     task = Task.get_by_id(task_id)
 
     if(uploaded_file and uploaded_file.filename):
         try:
             file_name = secure_filename(uploaded_file.filename)
             file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}')
+
+            uploaded_file.save(file_name)
+
+            cadext=os.path.splitext(file_name)[1]
+            blob = Blob(uploaded_file.filename, bucket)
+            blob.upload_from_filename(file_name,'audio/'+cadext[-3:])
             
-            if(not os.path.exists(file_path)):
-                os.makedirs(file_path)
+            if os.path.exists(file_name):
+                       os.remove(file_name)
+            ##if(not os.path.exists(file_path)):
+            ##    os.makedirs(file_path)
             
-            uploaded_file.save(os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name))
+           ##uploaded_file.save(os.path.join(f'{UPLOAD_FOLDER}/{user_id}', file_name))
 
             task.status = TaskStatus.UPLOADED.value
             task.update()
