@@ -52,6 +52,7 @@ def convertir_archivos(*args):
             nameTask = task.file_name.split('.')[0]
             blob = bucket.get_blob(task.file_name)
             metadata={'Content-Type':'audio/'+task.new_format}
+            print(metadata)
             blob.metadata = metadata
             blob.patch()
 
