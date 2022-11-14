@@ -62,8 +62,8 @@ def get_file(name_task: str):
         if(task):
             blob = bucket.get_blob(task.file_name)
             file_path = f'{UPLOAD_FOLDER}'
-            blob.download_to_filename(name_task)
-            return send_from_directory(name_task, name_task, as_attachment=True)
+            blob.download_to_filename(file_path+'/'+name_task)
+            return send_from_directory(file_path, name_task, as_attachment=True)
         else:
             return { 'message': "No existe el registro", 'status': status }
     except Exception as e:
