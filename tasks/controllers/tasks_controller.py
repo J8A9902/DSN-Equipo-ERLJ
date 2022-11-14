@@ -69,7 +69,7 @@ def get_file(name_task: str):
             print("Entro acá")
             print(blob)
             ##file_path = f'{UPLOAD_FOLDER}/{str(task.user_id)}'
-            return "Funciono"
+            return blob
         else:
             return { 'message': "No existe el registro", 'status': status }
     except Exception as e:
