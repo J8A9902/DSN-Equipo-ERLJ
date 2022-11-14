@@ -22,7 +22,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
       AUTH_SERVICE: http://auth-microservice:5000
-      UPLOAD_FOLDER: /tasks_microservice/nfs
+      UPLOAD_FOLDER: /tasks_microservice/
       PYTHONUNBUFFERED: 1
 
   nginx:
