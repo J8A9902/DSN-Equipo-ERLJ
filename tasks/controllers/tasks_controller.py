@@ -29,7 +29,7 @@ def create_task(user_id: int):
 @login_required
 def get_task(user_id: int, id_task: int):
     response = get_task_by_id(user_id, id_task)   
-
+ 
     return jsonify(response), response['status']
 
 
@@ -55,11 +55,21 @@ def update(user_id: int, id_task: int):
 
 @tasks.route('/getFile/<string:name_task>', methods=['GET'])
 def get_file(name_task: str):
+    client = client = storage.Client.from_service_account_json("dsn-erlj-8549770df6f7.json")
+    bucket = client.get_bucket('cloud-conversion-storage')
     try:
+        
         task = Task.query.filter(Task.file_name==name_task).first()
+        print("--------------------------------------------------")
+        print("Entro acá 1")
+        print(name_task)
         if(task):
-            file_path = f'{UPLOAD_FOLDER}/{str(task.user_id)}'
-            return send_from_directory(file_path, name_task, as_attachment=True)
+            blob = bucket.get_blob(name_task)
+            print("--------------------------------------------------")
+            print("Entro acá")
+            print(blob)
+            ##file_path = f'{UPLOAD_FOLDER}/{str(task.user_id)}'
+            return "Funciono"
         else:
             return { 'message': "No existe el registro", 'status': status }
     except Exception as e:

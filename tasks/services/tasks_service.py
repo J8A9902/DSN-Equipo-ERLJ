@@ -132,10 +132,10 @@ def create_file(uploaded_file, task_id, user_id):
     if(uploaded_file and uploaded_file.filename):
         try:
             file_name = secure_filename(uploaded_file.filename)
-            file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}')
+            ##file_path = os.path.join(f'{UPLOAD_FOLDER}/{user_id}')
 
             uploaded_file.save(file_name)
-
+            
             cadext=os.path.splitext(file_name)[1]
             blob = Blob(uploaded_file.filename, bucket)
             blob.upload_from_filename(file_name,'audio/'+cadext[-3:])
