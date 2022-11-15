@@ -1,40 +1,37 @@
 Server Software:        nginx/1.23.2
-Server Hostname:        34.27.241.129
-Server Port:            3000
+Server Hostname:        34.110.214.38
+Server Port:            80
 
-Document Path:          /api/tasks
-Document Length:        0 bytes
+Document Path:          /api/tasks/getFile/audio.ogg
+Document Length:        8737194 bytes
 
 Concurrency Level:      20
-Time taken for tests:   334.532 seconds
+Time taken for tests:   315.400 seconds
 Complete requests:      200
-Failed requests:        22
-   (Connect: 0, Receive: 0, Length: 22, Exceptions: 0)
-Keep-Alive requests:    23
-Total transferred:      5727 bytes
-Total body sent:        1412783709
-HTML transferred:       2185 bytes
-Requests per second:    0.60 [#/sec] (mean)
-Time per request:       33453.235 [ms] (mean)
-Time per request:       1672.662 [ms] (mean, across all concurrent requests)
-Transfer rate:          0.02 [Kbytes/sec] received
-                        4124.18 kb/s sent
-                        4124.20 kb/s total
+Failed requests:        11
+   (Connect: 0, Receive: 0, Length: 11, Exceptions: 0)
+Keep-Alive requests:    189
+Total transferred:      1725991827 bytes
+HTML transferred:       1725924627 bytes
+Requests per second:    0.63 [#/sec] (mean)
+Time per request:       31540.049 [ms] (mean)
+Time per request:       1577.002 [ms] (mean, across all concurrent requests)
+Transfer rate:          5344.12 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0  110 149.8     85    1114
-Processing:  5475 31385 2925.4  30956   43226
-Waiting:        0 3495 4672.2      0   13906
-Total:       5672 31495 2920.3  31048   43311
+Connect:        0   17 116.0      0    1609
+Processing:  1094 31225 19568.5  28614   93266
+Waiting:      304 1099 1613.0    532    9701
+Total:       1094 31242 19567.4  28614   93302
 
 Percentage of the requests served within a certain time (ms)
-  50%  31048
-  66%  31640
-  75%  32450
-  80%  32820
-  90%  34308
-  95%  35636
-  98%  38868
-  99%  40903
- 100%  43311 (longest request)
+  50%  28614
+  66%  35386
+  75%  38905
+  80%  42827
+  90%  57180
+  95%  79310
+  98%  88811
+  99%  90230
+ 100%  93302 (longest request)
