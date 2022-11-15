@@ -1,0 +1,40 @@
+Server Software:        nginx/1.23.2
+Server Hostname:        34.110.214.38
+Server Port:            80
+
+Document Path:          /api/tasks
+Document Length:        95 bytes
+
+Concurrency Level:      15
+Time taken for tests:   947.648 seconds
+Complete requests:      500
+Failed requests:        57
+   (Connect: 0, Receive: 0, Length: 57, Exceptions: 0)
+Keep-Alive requests:    443
+Total transferred:      117838 bytes
+Total body sent:        4378761106
+HTML transferred:       42085 bytes
+Requests per second:    0.53 [#/sec] (mean)
+Time per request:       28429.450 [ms] (mean)
+Time per request:       1895.297 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.12 [Kbytes/sec] received
+                        4512.36 kb/s sent
+                        4512.49 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    4  14.3      0     134
+Processing:  3143 28026 3353.4  28196   45468
+Waiting:      918 2105 1771.1   1772   17852
+Total:       3160 28030 3356.1  28196   45501
+
+Percentage of the requests served within a certain time (ms)
+  50%  28196
+  66%  29406
+  75%  30065
+  80%  30222
+  90%  30940
+  95%  31562
+  98%  33760
+  99%  40888
+ 100%  45501 (longest request)
