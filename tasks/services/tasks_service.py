@@ -138,7 +138,7 @@ def create_file(uploaded_file, task_id, user_id):
             
             cadext=os.path.splitext(file_name)[1]
             blob = Blob(uploaded_file.filename, bucket)
-            blob.upload_from_filename(file_name,'audio/'+cadext[-3:])
+            blob.upload_from_filename(file_name)
             
             if os.path.exists(file_name):
                        os.remove(file_name)
