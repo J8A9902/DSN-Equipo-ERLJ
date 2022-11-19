@@ -8,7 +8,7 @@ services:
     working_dir: /scheduler/
     command: bash -c './run_service.sh'
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.27.245.68/tasks
       AUTH_SERVICE: http://auth-microservice:5000
       UPLOAD_FOLDER: /scheduler/uploads
       PYTHONUNBUFFERED: 1
