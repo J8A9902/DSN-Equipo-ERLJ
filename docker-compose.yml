@@ -8,7 +8,7 @@ services:
     working_dir: /auth_microservice/
     command: bash -c './run_service.sh'
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/auth
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.27.245.68/auth
       JWT_SECRET_KEY: 7b11677e262b608e88ee6747372a1776
 
 
@@ -20,7 +20,7 @@ services:
     working_dir: /tasks_microservice/
     command: bash -c './run_service.sh'
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.121.35.36/tasks
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.27.245.68/tasks
       AUTH_SERVICE: http://auth-microservice:5000
       UPLOAD_FOLDER: /tasks_microservice/
       PYTHONUNBUFFERED: 1
