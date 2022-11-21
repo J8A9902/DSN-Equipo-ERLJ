@@ -3,38 +3,38 @@ Server Hostname:        34.110.214.38
 Server Port:            80
 
 Document Path:          /api/tasks
-Document Length:        95 bytes
+Document Length:        0 bytes
 
 Concurrency Level:      20
-Time taken for tests:   768.026 seconds
-Complete requests:      500
-Failed requests:        491
-   (Connect: 0, Receive: 0, Length: 491, Exceptions: 0)
-Keep-Alive requests:    9
-Total transferred:      2394 bytes
-Total body sent:        3572925278
-HTML transferred:       855 bytes
-Requests per second:    0.65 [#/sec] (mean)
-Time per request:       30721.027 [ms] (mean)
-Time per request:       1536.051 [ms] (mean, across all concurrent requests)
-Transfer rate:          0.00 [Kbytes/sec] received
-                        4543.06 kb/s sent
-                        4543.06 kb/s total
+Time taken for tests:   311.689 seconds
+Complete requests:      200
+Failed requests:        23
+   (Connect: 0, Receive: 0, Length: 23, Exceptions: 0)
+Keep-Alive requests:    24
+Total transferred:      6384 bytes
+Total body sent:        1664354008
+HTML transferred:       2280 bytes
+Requests per second:    0.64 [#/sec] (mean)
+Time per request:       31168.929 [ms] (mean)
+Time per request:       1558.446 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.02 [Kbytes/sec] received
+                        5214.63 kb/s sent
+                        5214.65 kb/s total
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0   27  67.1     18    1055
-Processing:  2709 30373 1348.6  30259   35060
-Waiting:        0  440 1230.7      0    5140
-Total:       2730 30400 1350.7  30282   35088
+Connect:        0   18  24.5     12     312
+Processing:  4222 30279 1972.9  30220   34246
+Waiting:        0  828 1299.1      0    4402
+Total:       4247 30297 1972.8  30230   34255
 
 Percentage of the requests served within a certain time (ms)
-  50%  30282
-  66%  30447
-  75%  30602
-  80%  30701
-  90%  31012
-  95%  31401
-  98%  31842
-  99%  33296
- 100%  35088 (longest request)
+  50%  30230
+  66%  30359
+  75%  30501
+  80%  30613
+  90%  30892
+  95%  31907
+  98%  32995
+  99%  33730
+ 100%  34255 (longest request)

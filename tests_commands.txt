@@ -1,6 +1,6 @@
 
-ab -v 4 -n 1000 -c 100 -rk -g output.csv -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2ODQ3MDg2MiwianRpIjoiNzI0Nzg1MDYtNDcxNS00MjcyLTkxOGUtMDJkYzBlZGVkY2E4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY4NDcwODYyLCJleHAiOjE2Njg0ODg4NjJ9.x9sxk3qMVcFjkbG8UK5KuCswA3ww8sVlDY09PVIdzHg' -p post_data.txt -T "multipart/form-data; boundary=1234567890" http://34.110.214.38/api/tasks
+ab -v 4 -n 1000 -c 100 -rk -g output.csv -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2OTAwMDU4NywianRpIjoiZjA0MjY2M2YtMWYxNi00MWI5LThmYTItOThjODQ3OGYzN2ZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY5MDAwNTg3LCJleHAiOjE2NjkwMTg1ODd9.2TftBfXAtTzwvZS0aj4ad-yMzTqhJ2YZOAGtqx1K18w' -p post_data.txt -T "multipart/form-data; boundary=1234567890" http://34.110.214.38/api/tasks
 
 
-ab -v 4 -n 150 -c 10 -rk -g output.csv -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2ODQ3MDg2MiwianRpIjoiNzI0Nzg1MDYtNDcxNS00MjcyLTkxOGUtMDJkYzBlZGVkY2E4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY4NDcwODYyLCJleHAiOjE2Njg0ODg4NjJ9.x9sxk3qMVcFjkbG8UK5KuCswA3ww8sVlDY09PVIdzHg' -T "multipart/form-data; boundary=1234567890" http://34.110.214.38/api/tasks/getFile/audio.ogg 
+ab -v 4 -n 150 -c 10 -rk -g output.csv -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2OTAwMDU4NywianRpIjoiZjA0MjY2M2YtMWYxNi00MWI5LThmYTItOThjODQ3OGYzN2ZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY5MDAwNTg3LCJleHAiOjE2NjkwMTg1ODd9.2TftBfXAtTzwvZS0aj4ad-yMzTqhJ2YZOAGtqx1K18w" http://34.110.214.38/api/tasks/getFile/audio.ogg 
 

@@ -6,34 +6,36 @@ Document Path:          /api/tasks
 Document Length:        95 bytes
 
 Concurrency Level:      10
-Time taken for tests:   1839.461 seconds
-Complete requests:      1000
-Failed requests:        0
-Keep-Alive requests:    1000
-Total transferred:      266000 bytes
-Total body sent:        8781952400
-HTML transferred:       95000 bytes
-Requests per second:    0.54 [#/sec] (mean)
-Time per request:       18394.608 [ms] (mean)
-Time per request:       1839.461 [ms] (mean, across all concurrent requests)
-Transfer rate:          0.14 [Kbytes/sec] received
-                        4662.30 kb/s sent
-                        4662.45 kb/s total
+Time taken for tests:   180.221 seconds
+Complete requests:      100
+Failed requests:        5
+   (Connect: 0, Receive: 0, Length: 5, Exceptions: 0)
+Non-2xx responses:      5
+Keep-Alive requests:    100
+Total transferred:      31070 bytes
+Total body sent:        893065200
+HTML transferred:       13870 bytes
+Requests per second:    0.55 [#/sec] (mean)
+Time per request:       18022.098 [ms] (mean)
+Time per request:       1802.210 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.17 [Kbytes/sec] received
+                        4839.25 kb/s sent
+                        4839.42 kb/s total
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   2.9      0      33
-Processing:  2772 18277 1565.5  18219   24842
-Waiting:      856 1553 422.7   1460    5311
-Total:       2796 18277 1565.5  18219   24842
+Connect:        0    3   8.4      0      32
+Processing:  2787 17254 3281.9  17333   27226
+Waiting:      923 2261 1500.4   1798    8834
+Total:       2803 17257 3285.6  17333   27256
 
 Percentage of the requests served within a certain time (ms)
-  50%  18219
-  66%  18809
-  75%  19152
-  80%  19418
-  90%  20121
-  95%  20894
-  98%  21778
-  99%  22726
- 100%  24842 (longest request)
+  50%  17333
+  66%  18486
+  75%  18882
+  80%  19059
+  90%  19916
+  95%  23198
+  98%  26287
+  99%  27256
+ 100%  27256 (longest request)
