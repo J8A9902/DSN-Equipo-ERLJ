@@ -32,6 +32,10 @@ class BaseModel(db.Model):
         return cls.query.filter_by(user_id=user_id).all()
 
     @classmethod
+    def get_by_file_name(cls, file_name: str):
+        return cls.query.filter_by(file_name=file_name).all()
+
+    @classmethod
     def get_by_uploaded(cls):
         return cls.query.filter_by(status=TaskStatus.UPLOADED.value).all()
 

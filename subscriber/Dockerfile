@@ -1,7 +1,7 @@
 FROM python
 
 RUN groupadd -r user && useradd -r -g user user
-WORKDIR /scheduler
+WORKDIR /subscriber
 ADD requirements.txt ./
 RUN pip install -r requirements.txt
 ADD . .
