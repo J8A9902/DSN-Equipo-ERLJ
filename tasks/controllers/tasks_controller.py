@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, send_from_directory
 
 from services.tasks_service import *
 from authentication import login_required
-from tasks.config.config import UPLOAD_FOLDER
+from config import UPLOAD_FOLDER
 
 tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 
