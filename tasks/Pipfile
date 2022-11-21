@@ -8,6 +8,8 @@ flask = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+google-cloud-pubsub = "*"
+"google.cloud.storage" = "*"
 
 [dev-packages]
 

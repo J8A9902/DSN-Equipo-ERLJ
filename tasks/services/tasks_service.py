@@ -1,13 +1,15 @@
+import json
 import string
 from models import *
 from helpers.utils import object_as_dict
 import os
-from config import UPLOAD_FOLDER
+from config import GCP_PROJECT_ID, GCP_TOPIC_ID
 from flask import send_file
 from werkzeug.utils import secure_filename
 
 from google.cloud.storage import Blob
 from google.cloud import storage
+from pub.publisher import publish_messages
 
 from helpers.tasks_status_enum import TaskStatus
 
@@ -149,6 +151,8 @@ def create_file(uploaded_file, task_id, user_id):
 
             task.status = TaskStatus.UPLOADED.value
             task.update()
+            
+            publish_messages(GCP_PROJECT_ID, GCP_TOPIC_ID, f'{file_name},{task.new_format},{task.id}')
 
         except Exception as e:
             task.delete()
