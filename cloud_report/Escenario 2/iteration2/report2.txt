@@ -6,32 +6,31 @@ Document Path:          /api/tasks/getFile/audio.ogg
 Document Length:        8737194 bytes
 
 Concurrency Level:      20
-Time taken for tests:   315.400 seconds
+Time taken for tests:   74.722 seconds
 Complete requests:      200
-Failed requests:        11
-   (Connect: 0, Receive: 0, Length: 11, Exceptions: 0)
-Keep-Alive requests:    189
-Total transferred:      1725991827 bytes
-HTML transferred:       1725924627 bytes
-Requests per second:    0.63 [#/sec] (mean)
-Time per request:       31540.049 [ms] (mean)
-Time per request:       1577.002 [ms] (mean, across all concurrent requests)
-Transfer rate:          5344.12 [Kbytes/sec] received
+Failed requests:        0
+Keep-Alive requests:    200
+Total transferred:      1747506000 bytes
+HTML transferred:       1747438800 bytes
+Requests per second:    2.68 [#/sec] (mean)
+Time per request:       7472.211 [ms] (mean)
+Time per request:       373.611 [ms] (mean, across all concurrent requests)
+Transfer rate:          22838.61 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0   17 116.0      0    1609
-Processing:  1094 31225 19568.5  28614   93266
-Waiting:      304 1099 1613.0    532    9701
-Total:       1094 31242 19567.4  28614   93302
+Connect:        0    4  11.3      0      45
+Processing:  1534 7092 3664.9   6439   25393
+Waiting:      305 1729 2322.5    830   12283
+Total:       1566 7096 3664.2   6439   25393
 
 Percentage of the requests served within a certain time (ms)
-  50%  28614
-  66%  35386
-  75%  38905
-  80%  42827
-  90%  57180
-  95%  79310
-  98%  88811
-  99%  90230
- 100%  93302 (longest request)
+  50%   6439
+  66%   7701
+  75%   8575
+  80%   9020
+  90%  11122
+  95%  15123
+  98%  18632
+  99%  20335
+ 100%  25393 (longest request)
