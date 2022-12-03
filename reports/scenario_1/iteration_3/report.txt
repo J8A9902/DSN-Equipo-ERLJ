@@ -1,0 +1,40 @@
+Server Software:        gunicorn
+Server Hostname:        hybrid-circle-368300.uc.r.appspot.com
+Server Port:            80
+
+Document Path:          /tasks
+Document Length:        0 bytes
+
+Concurrency Level:      30
+Time taken for tests:   311.324 seconds
+Complete requests:      300
+Failed requests:        0
+Keep-Alive requests:    1
+Total transferred:      285 bytes
+Total body sent:        1637255498
+HTML transferred:       95 bytes
+Requests per second:    0.96 [#/sec] (mean)
+Time per request:       31132.427 [ms] (mean)
+Time per request:       1037.748 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.00 [Kbytes/sec] received
+                        5135.75 kb/s sent
+                        5135.75 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   21  17.2     14     104
+Processing:  3814 30362 1627.7  30288   34172
+Waiting:        0   81 413.8      0    2198
+Total:       3832 30383 1628.8  30306   34213
+
+Percentage of the requests served within a certain time (ms)
+  50%  30306
+  66%  30451
+  75%  30603
+  80%  30693
+  90%  30971
+  95%  31548
+  98%  32088
+  99%  33200
+ 100%  34213 (longest request)
+
