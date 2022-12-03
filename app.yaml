@@ -1,0 +1,24 @@
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT app:app
+
+runtime_config:
+  python_version: 3.7
+
+env_variables:
+  DATABASE_URL: postgresql+psycopg2://postgres:postgres@34.27.245.68/tasks
+  AUTH_SERVICE: https://boxwood-tree-367020.de.r.appspot.com
+  UPLOAD_FOLDER: /uploads
+  GCP_PROJECT_ID: hybrid-circle-368300
+  GCP_TOPIC_ID: cloud-convertion-topic
+  
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5
+  cool_down_period_sec: 180
+  cpu_utilization:
+    target_utilization: 0.6
+resources:
+  cpu: 2
+  memory_gb: 2
+  disk_size_gb: 20
