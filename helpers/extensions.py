@@ -1,6 +1,6 @@
 from flask import Flask
 
-from config import DATABASE_URL, GCP_PROJECT_ID, GCP_SUBSCRIPTION_ID, GCP_SUBSCRIBE_TIMEOUT
+from config import DATABASE_URL, GCP_PROJECT_ID, GCP_SUBSCRIPTION_ID
 from database import db
 from models import *
 from sub.subscriber import receive_messages
