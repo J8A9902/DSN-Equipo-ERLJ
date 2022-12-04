@@ -1,0 +1,36 @@
+Server Software:        gunicorn
+Server Hostname:        hybrid-circle-368300.uc.r.appspot.com
+Server Port:            80
+
+Document Path:          /tasks/getFile/audio.mp3
+Document Length:        103 bytes
+
+Concurrency Level:      30
+Time taken for tests:   33.470 seconds
+Complete requests:      300
+Failed requests:        0
+Keep-Alive requests:    300
+Total transferred:      88200 bytes
+HTML transferred:       30900 bytes
+Requests per second:    8.96 [#/sec] (mean)
+Time per request:       3346.958 [ms] (mean)
+Time per request:       111.565 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    5  16.1      0      63
+Processing:   261 3145 544.7   3266    3603
+Waiting:      260 3145 544.8   3266    3603
+Total:        261 3150 534.4   3266    3664
+
+Percentage of the requests served within a certain time (ms)
+  50%   3266
+  66%   3292
+  75%   3327
+  80%   3352
+  90%   3376
+  95%   3422
+  98%   3471
+  99%   3508
+ 100%   3664 (longest request)
