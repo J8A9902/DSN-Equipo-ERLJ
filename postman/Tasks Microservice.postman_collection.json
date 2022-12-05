@@ -16,13 +16,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjMxNTAyMywianRpIjoiYTU3MGViYWEtMmZjZi00MTc2LWIxZDItMmUxNDFmNDQ2ZTE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2MzE1MDIzLCJleHAiOjE2NjYzMzMwMjN9.EJfPgpIf5Ie5D5C4IqjW1DhghmHVS7mEQniMa4VzEKQ",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3MDA3NjgxOCwianRpIjoiMGY0OWEzNDAtMjgwYy00MGIxLTllMjgtODJkOGRjNjgxODU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjcwMDc2ODE4LCJleHAiOjE2NzAwOTQ4MTh9.ErTOe4vAOB1o0GavdFhxhbM6DUvLcUumcmqLBvdIFHI",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"max\": 2,\n    \"order\": 1\n}",
+					"raw": "{\n    \"max\": 5,\n    \"order\": 0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -30,14 +30,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}",
+					"raw": "{{tasks_host}}/{{tasks_prefix}}",
 					"host": [
-						"{{host}}"
+						"{{tasks_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{tasks-microservice-url}}"
+						"{{tasks_prefix}}"
 					]
 				}
 			},
@@ -50,7 +48,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NjQ1MjI1NSwianRpIjoiMDI3N2NkNTAtODI0Mi00YzI4LWEzZmYtMzYzODhlMDlhNjRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY2NDUyMjU1LCJleHAiOjE2NjY0NzAyNTV9.bzNp9LDNPtJjrOlBscUkr8YQj0Nl0x30DMzn1nWiAVA",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3MDA3NjgxOCwianRpIjoiMGY0OWEzNDAtMjgwYy00MGIxLTllMjgtODJkOGRjNjgxODU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjcwMDc2ODE4LCJleHAiOjE2NzAwOTQ4MTh9.ErTOe4vAOB1o0GavdFhxhbM6DUvLcUumcmqLBvdIFHI",
 						"type": "text"
 					}
 				],
@@ -61,24 +59,22 @@
 							"key": "fileName",
 							"contentType": "",
 							"type": "file",
-							"src": "wallpapers/wave/4wave_01.png"
+							"src": "/home/rafael/Downloads/audio15.mp3"
 						},
 						{
 							"key": "newFormat",
-							"value": "mp3",
+							"value": "ogg",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}",
+					"raw": "{{tasks_host}}/{{tasks_prefix}}",
 					"host": [
-						"{{host}}"
+						"{{tasks_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{tasks-microservice-url}}"
+						"{{tasks_prefix}}"
 					]
 				}
 			},
@@ -96,14 +92,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/33",
+					"raw": "{{tasks_host}}/{{tasks_prefix}}/33",
 					"host": [
-						"{{host}}"
+						"{{tasks_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{tasks-microservice-url}}",
+						"{{tasks_prefix}}",
 						"33"
 					]
 				}
@@ -131,14 +125,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/34",
+					"raw": "{{tasks_host}}/{{tasks_prefix}}/34",
 					"host": [
-						"{{host}}"
+						"{{tasks_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{tasks-microservice-url}}",
+						"{{tasks_prefix}}",
 						"34"
 					]
 				}
@@ -157,16 +149,46 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{tasks-microservice-url}}/getFile/audio5.mp3",
+					"raw": "{{tasks_host}}/{{tasks_prefix}}/getFile/audio.mp3",
 					"host": [
-						"{{host}}"
+						"{{tasks_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{tasks-microservice-url}}",
+						"{{tasks_prefix}}",
 						"getFile",
-						"audio5.mp3"
+						"audio.mp3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cloud-function-email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"r\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-hybrid-circle-368300.cloudfunctions.net/send_email",
+					"protocol": "https",
+					"host": [
+						"us-central1-hybrid-circle-368300",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"send_email"
 					]
 				}
 			},

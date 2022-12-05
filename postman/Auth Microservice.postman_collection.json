@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"rafael\",\n    \"password\": \"password\"\n}",
+					"raw": "{\n    \"username\": \"rafael\",\n    \"password\": \"password\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,14 +21,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{auth-microservice-url}}/login",
+					"raw": "{{auth_host}}/{{auth_prefix}}/login",
 					"host": [
-						"{{host}}"
+						"{{auth_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{auth-microservice-url}}",
+						"{{auth_prefix}}",
 						"login"
 					]
 				}
@@ -47,14 +45,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{auth-microservice-url}}/whoami",
+					"raw": "{{auth_host}}/{{auth_prefix}}/whoami",
 					"host": [
-						"{{host}}"
+						"{{auth_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{auth-microservice-url}}",
+						"{{auth_prefix}}",
 						"whoami"
 					]
 				}
@@ -68,7 +64,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"rafael\",\n    \"password1\": \"password\",\n    \"password2\": \"password\",\n    \"email\": \"r@m.com\"\n}",
+					"raw": "{\n    \"username\": \"rafael\",\n    \"password1\": \"password\",\n    \"password2\": \"password\",\n    \"email\": \"r1@m.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,14 +72,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/{{prefix}}/{{auth-microservice-url}}/signup",
+					"raw": "{{auth_host}}/{{auth_prefix}}/signup",
 					"host": [
-						"{{host}}"
+						"{{auth_host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"{{prefix}}",
-						"{{auth-microservice-url}}",
+						"{{auth_prefix}}",
 						"signup"
 					]
 				}
