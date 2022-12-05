@@ -1,25 +1,13 @@
 # GRUPO 25
-# Sistema Conversión Cloud - Entorno Tradicional
+# Sistema Conversión Cloud - Despliegue App Engine
+
+## Implementación
+Se desplegaron 3 servicios de app engine:
 
 
-## Requisitos
-- Instalar docker y docker compose
-- Instalar Postman
-
-
-## Pasos para ejecutar el sistema
-- git clone https://github.com/J8A9902/DSN-Equipo-ERLJ.git
-- cd DSN-Equipo-ERLJ
-- docker-compose up --build o docker-compose up --build -d (para segundo planno) 
-- docker ps, esto para validar los contenedores en ejecución, los cuales deben ser:
-  - auth-microservice
-  - auth-database
-  - tasks-microservice
-  - tasks-database
-  - redis
-  - nginx
-  
-![image](https://user-images.githubusercontent.com/98363516/197398728-af1a24bc-a930-4762-97c4-e2756eb06d29.png)
+1. Mircoservicio de autenticación -> app-engine-auth
+2. Microservicio de tareas -> app-engine-tasks
+3. Worker -> app-engine-async
 
 
 ## Pasos para obtener las colecciones de postman
